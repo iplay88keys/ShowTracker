@@ -38,15 +38,12 @@
 				overflow: hidden;
 				text-overflow: ellipsis;
 			}
-<<<<<<< HEAD
-=======
 			.centered {
 				margin: 0 auto;
 			}
 			tfoot {
     		display: table-header-group;
 			}
->>>>>>> 8c41ed1242a8e7b6c109b17e981da5a50a10514b
 		</style>
 		@yield('header')
 	</head>
