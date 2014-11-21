@@ -1,0 +1,10 @@
+{{HTML::style('assets/css/bootstrap.css')}}
+{{HTML::script('assets/js/jquery-2.1.1.min.js')}}
+{{HTML::script('assets/js/bootstrap.js')}}
+{{HTML::script('http://cdnjs.cloudflare.com/ajax/libs/holder/2.4.1/holder.js')}}
+{{HTML::script('assets/js/jquery.lazyload.min.js')}}
+{{HTML::script('assets/js/jquery.bsAlerts.min.js')}}			
+{{HTML::script('assets/js/scroll-to-top.js')}}
+{{HTML::style('http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css')}}
+{{HTML::script('assets/jquery-qtip/jquery.qtip.min.js')}}
+{{HTML::style('assets/jquery-qtip/jquery.qtip.min.css')}}
