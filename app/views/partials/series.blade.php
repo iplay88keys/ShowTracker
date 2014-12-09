@@ -1,7 +1,8 @@
 <a href='/list'>&#8592; Back</a>
 <div class='row text-center'>
-	<img id='banner' src='http://thetvdb.com/banners/{{$data["serie"]->banner}}' data-src='holder.js/758x140/text:{{$data["serie"]->name}}' alt='{{$data["serie"]->id}}'/>
+	<img id='banner' src='http://thetvdb.com/banners/{{$data["serie"]->banner}}' data-src='holder.js/758x140/text:{{$data["serie"]->name}}'/>
 </div>
+<div id='series' style='display: none;'>{{$data["serie"]->id}}</div>
 <table id="table" class="display dataTable">
 	<thead>
 		<tr>

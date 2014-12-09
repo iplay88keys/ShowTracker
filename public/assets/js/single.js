@@ -43,7 +43,7 @@ $(document).ready(function() {
 			if(confirm("Are you sure?")) {
 				var rowData = oTable.fnGetData($(this).closest('tr')[0]);
 				var id = rowData[0];
-			var series = $('#banner').attr('alt');
+				var series = $('#series').html();
 				$.post('/list/remove_episode', {id:id, series:series}, function(data){
 					if(data == 'done') {
 						$(document).trigger("clear-alerts");
@@ -65,7 +65,7 @@ $(document).ready(function() {
 		} else {
 			var rowData = oTable.fnGetData($(this).closest('tr')[0]);
 			var id = rowData[0];
-			var series = $('#banner').attr('alt');
+			var series = $('#series').html();
 			$.post('/list/add_episode', {id:id, series:series}, function(data){
 				if(data == 'done') {
 						$(document).trigger("clear-alerts");
