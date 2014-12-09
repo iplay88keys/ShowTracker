@@ -25,7 +25,7 @@
 		@foreach($data['episodes'] as $episode)
 			<tr>
 				<td>{{$episode->id}}</td>
-				<th>
+				<td>
 					<div class="text-center">
 						<input type='checkbox' name='{{$episode->id}}'
 							@if(count($watched) > 0)
@@ -35,7 +35,7 @@
 							@endif
 						>
 					</div>
-				</th>
+				</td>
 				@if($episode->season == '0')
 					<td>Special</td>
 				@else
