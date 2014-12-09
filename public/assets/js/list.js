@@ -32,8 +32,6 @@ $(document).ready(function() {
 
 	var table = $('#table').DataTable();
 	var oTable = $('#table').dataTable();
-	var URL_ROOT = "app.two50sixstudios.com/";
-	var oTT = TableTools.fnGetInstance('table');
 
 	$('#search-info').hide();
 
@@ -41,17 +39,11 @@ $(document).ready(function() {
 		$('#search').focus();
 	});
 
-	$('#table').click(function(e) {
-		var rowData = oTable.fnGetData($(this).closest('tr')[0])
-		var id = rowData[0][0];
-		var url = '/list/' + id
-		window.location.href = url;
-	});
-
-	$('#remove').click(function() {
+	$('#remove').click(function(e) {
 		if(deleteItem()) {
 			var rowData = oTable.fnGetData($(this).closest('tr')[0]);
 			var id = rowData[0];
+			console.log(id);
 			$.post('/list/remove_series', {id:id}, function(data){
 				if(data == "deleted") {
 					$(document).trigger('add-alerts', [{
@@ -64,6 +56,14 @@ $(document).ready(function() {
 				}
 			});
 		}
+		e.stopPropagation();
+	});
+
+	$('#table').click(function() {
+		var rowData = oTable.fnGetData($(this).closest('tr')[0])
+		var id = rowData[0][0];
+		var url = '/list/' + id
+		window.location.href = url;
 	});
 
 	function deleteItem() {
