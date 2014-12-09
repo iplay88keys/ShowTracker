@@ -70,7 +70,8 @@ class ListController extends \BaseController {
 				->with('js_config', $js_config);
 		} else {
 			return View::make('lists.list')
-				->with('data', $data);
+				->with('data', $data)
+				->with('type', 'list');
 		}
 	}
 

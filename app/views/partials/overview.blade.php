@@ -5,6 +5,9 @@
 			<th>Series</th>
 			<th>Banner</th>
 			<th>Overview</th>
+			@if(isset($type) && $type == 'list')
+				<th>Remove</th>
+			@endif
 		</tr>
 		</thead>
 		<tbody>
@@ -22,6 +25,9 @@
 							{{$series->overview}}
 						</div>
 					</td>
+					@if(isset($type) && $type == 'list')
+						<td></td>
+					@endif
 				</tr>
 			@endforeach
 		</tbody>

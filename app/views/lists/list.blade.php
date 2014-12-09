@@ -12,6 +12,5 @@
 @stop
 
 @section('footer')
-	{{HTML::script('assets/js/search.js')}}
 	{{HTML::script('assets/js/list.js')}}
 @stop
