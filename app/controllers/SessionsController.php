@@ -3,22 +3,7 @@
 use Laracasts\Utilities\JavaScript\Facades\JavaScript;
 class SessionsController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
-
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
+	//Displays login screen
 	public function create()
 	{
 		$js_config = Session::get('js_config');
@@ -34,11 +19,7 @@ class SessionsController extends \BaseController {
 	}
 
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+	//Logs the user in
 	public function store()
 	{
 		if(Auth::attempt(Input::only('email', 'password'))) {
@@ -59,12 +40,7 @@ class SessionsController extends \BaseController {
 		}
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	//Logs the user out
 	public function destroy()
 	{
 		if (Auth::guest()) {

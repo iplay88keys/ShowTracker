@@ -1,35 +1,20 @@
 <?php
-require_once __DIR__ . '/../includes/TvDb/vendor/autoload.php';
-include __DIR__ . '/../includes/custom/settings.php';
-include __DIR__ . '/../includes/TvDb/src/Moinax/TvDb/CurlException.php';
-include __DIR__ . '/../includes/TvDb/src/Moinax/TvDb/Client.php';
-include __DIR__ . '/../includes/TvDb/src/Moinax/TvDb/Serie.php';
-include __DIR__ . '/../includes/TvDb/src/Moinax/TvDb/Banner.php';
-include __DIR__ . '/../includes/TvDb/src/Moinax/TvDb/Episode.php';
 
-use Illuminate\Support\Facades\Facade;
-use Moinax\TvDb\Client;
 use Laracasts\Utilities\JavaScript\Facades\JavaScript;
 
 class ListController extends \BaseController {
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	//Add a series to a user's watchlist
 	public function add_series()
 	{
 		$id = Input::get('id');
 		$userID = Auth::user()->id;
-		
+
 		$seriesList = Series::where('id', '=', $id)->get();
 		if(is_null($seriesList->first())) {
-			$tvdb = new Client(TVDB_URL, TVDB_API_KEY);
-			$serverTime = $tvdb->getServerTime();
-			$data = $tvdb->getSerie($id);
-			
+			$retriever = App::make('ShowRetriever');
+			$data = $retriever->getSeriesByID($id);
+
 			$series = new Series;
 			$series->setAttribute('id', $id);
 			$series->setAttribute('banner', $data->banner);
@@ -38,7 +23,7 @@ class ListController extends \BaseController {
 			$series->setAttribute('status', $data->status);
 			$series->save();
 		}
-		
+
 		$userList = Lst::where('user_id', '=', $userID)->where('series_id', '=', $id)->get();
 		if(is_null($userList->first())) {
 			$item = new Lst;
@@ -48,15 +33,16 @@ class ListController extends \BaseController {
 		} else {
 			return 'exists';
 		}
-		
+
 		return 'saved';
 	}
-	
+
+	//Remove a series from a user's watchlist
 	public function remove_series()
 	{
 		$id = Input::get('id');
 		$userID = Auth::user()->id;
-		
+
 		$row = Lst::where('user_id', '=', $userID)->where('series_id', '=', $id)->get();
 		if(count($row) > 1) {
 			return 'error';
@@ -68,6 +54,7 @@ class ListController extends \BaseController {
 		}
 	}
 
+	//Display a user's watchlist
 	public function show_list()
 	{
 		$js_config = Session::get('js_config');
@@ -86,11 +73,12 @@ class ListController extends \BaseController {
 				->with('data', $data);
 		}
 	}
-	
+
+	//Display the episodes for a specific series
 	public function show_series($id)
 	{
 		$userID = Auth::user()->id;
-		
+
 		$seriesList = Series::where('id', '=', $id)->get();
 		if(is_null($id) || is_null($seriesList->first())) {
 			$js_config = array(
@@ -100,10 +88,9 @@ class ListController extends \BaseController {
 			return Redirect::to('list')
 				->with('js_config', $js_config);
 		}
-		
-		$tvdb = new Client(TVDB_URL, TVDB_API_KEY);
-		$serverTime = $tvdb->getServerTime();
-		$data = $tvdb->getSerieEpisodes($id);
+
+		$retriever = App::make('ShowRetriever');
+		$data = $retriever->getSeriesEpisodesByID($id);
 		if(count($data) > 0) {
 			return View::make('lists.single')->with('data', $data);
 		} else {
@@ -115,5 +102,4 @@ class ListController extends \BaseController {
 				->with('js_config', $js_config);
 		}
 	}
-	
 }

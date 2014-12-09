@@ -38,11 +38,8 @@
 				overflow: hidden;
 				text-overflow: ellipsis;
 			}
-			.centered {
-				margin: 0 auto;
-			}
 			tfoot {
-    		display: table-header-group;
+    			display: table-header-group;
 			}
 		</style>
 		@yield('header')
