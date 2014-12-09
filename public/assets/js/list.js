@@ -6,7 +6,6 @@ $(document).ready(function() {
 		'dom': 'T<"toolbar">frtip',
 		'order': [1, 'asc'],
 		'tableTools': {
-			'sRowSelect': 'single',
 			'aButtons': []
 		},
 		'columnDefs': [{
@@ -14,7 +13,7 @@ $(document).ready(function() {
 			'visible': false
 		},
 		{
-			'targets': 2,
+			'targets': [2, 4],
 			'orderable': false
 		},
 		{

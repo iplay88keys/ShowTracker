@@ -13,7 +13,13 @@
 
 Route::get('/', function()
 {
-	return View::make('site.default');
+	$js_config = Session::get('js_config');
+	if(isset($js_config)) {
+		return View::make('site.default')
+			->with('js_config', $js_config);
+	} else {
+		return View::make('site.default');
+	}
 });
 
 Route::get('login', 'SessionsController@create');
@@ -27,3 +33,19 @@ Route::get('list', 'ListController@show_list')->before('auth');
 Route::post('list/add_series', 'ListController@add_series')->before('auth');
 Route::get('list/{id}', 'ListController@show_series')->before('auth');
 Route::post('list/remove_series', 'ListController@remove_series')->before('auth');
+
+App::missing(function($exception)
+{
+	$js_config = array(
+		'message' => 'Sorry, but that page does not exist',
+		'message_type' => 'info'
+	);
+
+	if (Auth::guest()) {
+	    return Redirect::to('/')
+			->with('js_config', $js_config);
+	} else {
+	    return Redirect::to('/list')
+			->with('js_config', $js_config);
+	}
+});

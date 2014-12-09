@@ -41,6 +41,9 @@
 			tfoot {
     			display: table-header-group;
 			}
+			tr {
+				cursor: pointer;
+			}
 		</style>
 		@yield('header')
 	</head>
