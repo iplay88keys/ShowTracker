@@ -43,7 +43,6 @@ $(document).ready(function() {
 		if(deleteItem()) {
 			var rowData = oTable.fnGetData($(this).closest('tr')[0]);
 			var id = rowData[0];
-			console.log(id);
 			$.post('/list/remove_series', {id:id}, function(data){
 				if(data == "deleted") {
 					$(document).trigger('add-alerts', [{

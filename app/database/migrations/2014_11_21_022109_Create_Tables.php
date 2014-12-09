@@ -46,10 +46,9 @@ class CreateTables extends Migration {
 			$table->unsignedInteger('user_id');
 			$table->integer('episode_id');
 			$table->integer('series_id');
-			$table->boolean('watched')->default(False);
 			$table->timestamps();
 
-			$table->unique(array('user_id', 'series_id'));
+			$table->unique(array('user_id', 'episode_id'));
 			$table->foreign('user_id')->references('id')->on('users');
 			$table->foreign('series_id')->references('id')->on('series');
 		});
@@ -74,11 +73,11 @@ class CreateTables extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('userTypes');
-		Schema::drop('episodes');
 		Schema::drop('lists');
-		Schema::drop('users');
+		Schema::drop('episodes');
 		Schema::drop('series');
+		Schema::drop('users');
+		Schema::drop('types');
 	}
 
 }

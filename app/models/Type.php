@@ -5,7 +5,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Types extends Eloquent {
+class Type extends Eloquent {
 
 	/**
 	 * The database table used by the model.
@@ -17,6 +17,6 @@ class Types extends Eloquent {
 	protected $protected = ['id', 'type'];
 
 	public function users(){
-		return $this->belongsTo('users', 'user_type');
+		return $this->belongsTo('User', 'user_type');
 	}
 }

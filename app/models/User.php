@@ -28,6 +28,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public function types() {
-		return $this->belongsTo('Types');
+		return $this->belongsTo('Type');
 	}
 }

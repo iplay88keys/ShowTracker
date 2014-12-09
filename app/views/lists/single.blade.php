@@ -12,7 +12,6 @@
 	{{HTML::script('assets/js/single.js')}}
 	<script>
 		$(document).ready(function() {
-			
 		});
 	</script>
 @stop

@@ -34,6 +34,9 @@ Route::post('list/add_series', 'ListController@add_series')->before('auth');
 Route::get('list/{id}', 'ListController@show_series')->before('auth');
 Route::post('list/remove_series', 'ListController@remove_series')->before('auth');
 
+Route::post('list/add_episode', 'ListController@add_episode')->before('auth');
+Route::post('list/remove_episode', 'ListController@remove_episode')->before('auth');
+
 App::missing(function($exception)
 {
 	$js_config = array(

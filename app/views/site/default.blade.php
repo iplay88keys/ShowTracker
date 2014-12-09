@@ -79,7 +79,11 @@
 			</nav>
 			<a href='#0' class='cd-top pull-right'><i class='fa fa-chevron-circle-up fa-3x'></i></a>
 			<div class='container'>
-				<div id='alert-box' data-alerts='alerts' data-ids='alerts' data-fade='2000' class='text-center'></div>
+				<div style="height:75px; width:100%; clear:both; display:block">
+					&nbsp;
+					<div id='alert-box' data-alerts='alerts' data-ids='alerts' data-fade='2000' class='text-center'>
+					</div>
+				</div>
 				@yield('content')
 			</div>
 		</div>
