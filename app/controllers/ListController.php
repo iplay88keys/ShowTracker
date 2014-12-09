@@ -67,6 +67,7 @@ class ListController extends \BaseController {
 		if(count($js_config) > 0) {
 			return View::make('lists.list')
 				->with('data', $data)
+				->with('type', 'list')
 				->with('js_config', $js_config);
 		} else {
 			return View::make('lists.list')
